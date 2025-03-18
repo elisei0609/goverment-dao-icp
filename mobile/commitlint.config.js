@@ -17,5 +17,10 @@ module.exports = {
         'ci',
       ],
     ],
+    'type-empty': [2, 'never'],
+    'type-case': [2, 'always', 'lower'],
+    'subject-empty': [2, 'never'],
+    'subject-case': [2, 'always', 'lower'],
+    'subject-full-stop': [2, 'never', '.'],
   },
 };
