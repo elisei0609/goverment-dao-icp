@@ -1,0 +1,24 @@
+# Mobile
+mobile/node_modules/
+mobile/.expo/
+mobile/dist/
+mobile/.env*
+mobile/npm-debug.*
+mobile/*.jks
+mobile/*.p8
+mobile/*.p12
+mobile/*.key
+mobile/*.mobileprovision
+mobile/*.orig.*
+mobile/web-build/
+
+# Backend
+backend/target/
+backend/.dfx/
+backend/dist/
+backend/.env
+
+# General
+.DS_Store
+*.pem
+*.log
