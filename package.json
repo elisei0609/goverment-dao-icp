@@ -1,0 +1,22 @@
+{
+  "name": "dao",
+  "version": "1.0.0",
+  "description": "Government DAO on ICP - Decentralized wallet for Governance",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky && husky install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.5.0"
+  },
+  "lint-staged": {
+    "mobile/**/*.{js,jsx,ts,tsx,json}": ["cd mobile && prettier --write"]
+  }
+}

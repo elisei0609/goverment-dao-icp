@@ -9,3 +9,6 @@
 *.pem
 .env
 *.log
+
+# dependencies
+node_modules/
