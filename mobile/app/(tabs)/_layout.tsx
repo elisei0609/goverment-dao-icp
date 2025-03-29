@@ -9,10 +9,11 @@ const bottomTabsStyle = StyleSheet.create({
 const screenRouteIcons = {
   assets: require('../../assets/icons/assets-icon.png'),
   daos: require('../../assets/icons/daos-icon.png'),
-  daoVotings: require('../../assets/icons/voting-icon.png'),
+  daoVotings: require('../../assets/icons/votings-icon.png'),
+  settings: require('../../assets/icons/settings-icon.png'),
 };
 
-export const getRouteOptions = (title: 'assets' | 'daos' | 'daoVotings', onPressTabButton: () => void) => ({
+export const getRouteOptions = (title: 'assets' | 'daos' | 'daoVotings' | 'settings', onPressTabButton: () => void) => ({
   title,
   header: () => <></>,
   tabBarButton: () => screenRouteIcons[title] ? (
@@ -33,7 +34,7 @@ export default function TabLayout() {
 
   useEffect(() => {
     setTimeout(() => {
-      push('/(tabs)/daos');
+      push('/(tabs)/auth');
     }, 1000);
   }, [push]);
   
@@ -50,15 +51,23 @@ export default function TabLayout() {
       />
       <Tabs.Screen
         name="[dao]"
-        options={getRouteOptions('daoVotings', () => {
-          push('/(tabs)/[dao]')
-        })}
-      />
+        options={{
+          header: () => <></>,
+          tabBarButton: () => <></>,
+        }}
+      /> 
       <Tabs.Screen
         name="daos"
         options={getRouteOptions('daos', () => {
           push('/(tabs)/daos')
         })}
+      />
+      <Tabs.Screen
+        name="auth"
+        options={{
+          header: () => <></>,
+          tabBarButton: () => <></>,
+        }}
       />
     </Tabs>
   );
