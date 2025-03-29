@@ -1,58 +1,64 @@
-import React from 'react';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
-import { Pressable } from 'react-native';
+import { Tabs, useRouter } from 'expo-router';
+import { useEffect } from 'react';
+import { TouchableHighlight, Image, StyleSheet } from 'react-native';
 
-import Colors from '@/constants/Colors';
-import { useColorScheme } from '@/components/useColorScheme';
-import { useClientOnlyValue } from '@/components/useClientOnlyValue';
+const bottomTabsStyle = StyleSheet.create({
+   tabButton: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+});
 
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
+const screenRouteIcons = {
+  assets: require('../../assets/icons/assets-icon.png'),
+  daos: require('../../assets/icons/daos-icon.png'),
+  daoVotings: require('../../assets/icons/voting-icon.png'),
+};
+
+export const getRouteOptions = (title: 'assets' | 'daos' | 'daoVotings', onPressTabButton: () => void) => ({
+  title,
+  header: () => <></>,
+  tabBarButton: () => screenRouteIcons[title] ? (
+    <TouchableHighlight style={bottomTabsStyle.tabButton} onPress={onPressTabButton}>
+      <Image
+        style={{
+          width: 20,
+          height: 20,
+        }}
+        source={screenRouteIcons[title]}
+      />
+    </TouchableHighlight>
+  ) : <></>,
+});
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const { push } = useRouter();
 
+  useEffect(() => {
+    setTimeout(() => {
+      push('/(tabs)/daos');
+    }, 1000);
+  }, [push]);
+  
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
-        headerShown: useClientOnlyValue(false, true),
+        headerShown: false,
       }}>
       <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
-        }}
+        name="assets"
+        options={getRouteOptions('assets', () => {
+          push('/(tabs)/assets')
+        })}
       />
       <Tabs.Screen
-        name="two"
-        options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
+        name="[dao]"
+        options={getRouteOptions('daoVotings', () => {
+          push('/(tabs)/[dao]')
+        })}
+      />
+      <Tabs.Screen
+        name="daos"
+        options={getRouteOptions('daos', () => {
+          push('/(tabs)/daos')
+        })}
       />
     </Tabs>
   );
