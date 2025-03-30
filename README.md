@@ -24,3 +24,5 @@ npm install
 2. Follow [Mobile App Setup Guide](mobile/README.md#prerequisites) to install and run the mobile app
 3. Backend setup (coming soon)
 
+### ICP DEPLOYED
+Canister ID: Qdtsx-ryaaa-aaaaa-qagvq-cai
