@@ -1,0 +1,6 @@
+service : {
+    "create_new_dao": (text, text, text, text, int, text) -> (text) query;
+    "update_dao": (text, text) -> (text) query;
+    "vote_dao_proposal_up": (text, text) -> (text) query;
+    "vote_dao_proposal_down": (text, text) -> (text) query;
+}

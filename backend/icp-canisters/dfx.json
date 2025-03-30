@@ -1,0 +1,17 @@
+{
+  "canisters": {
+    "government-daos-backend": {
+      "candid": "src/government-daos-backend/government-daos-backend.did",
+      "package": "government-daos-backend",
+      "type": "rust"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
